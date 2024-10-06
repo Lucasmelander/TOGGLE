@@ -1,0 +1,111 @@
+/* Default body background in dark mode */
+body {
+  background-color: rgb(36, 36, 36); /* Dark mode background */
+  transition: background-color 0.3s ease;
+}
+
+.button-cover,
+.knobs,
+.layer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.button {
+  position: relative;
+  top: 50%;
+  width: 200px;
+  height: 100px;
+  margin: -20px auto 0 auto;
+  overflow: hidden;
+}
+
+.button.r,
+.button.r .layer {
+  border-radius: 100px;
+}
+
+.button.b2 {
+  border-radius: 2px;
+}
+
+.checkbox {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.knobs {
+  z-index: 2;
+}
+
+.layer {
+  width: 100%;
+  background-color: #ffffff; /* Default background (white) */
+  transition: background-color 0.3s ease;
+  z-index: 1;
+}
+
+/* Knob appearance */
+#button-3 .knobs:before {
+  content: ""; /* Default content */
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 70px;
+  height: 60px;
+  color: rgb(36, 36, 36);
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1;
+  padding: 9px 4px;
+  background-color: rgb(36, 36, 36); /* Knob default background (dark) */
+  border-radius: 50%;
+  transition: background-color 0.3s ease, left 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15);
+}
+
+#button-3 .checkbox:active + .knobs:before {
+  width: 46px;
+  border-radius: 100px;
+}
+
+#button-3 .checkbox:checked:active + .knobs:before {
+  margin-left: -26px;
+}
+
+/* Change knob color when checked */
+#button-3 .checkbox:checked + .knobs:before {
+  content: ""; /* Remove any text */
+  left: 112px;
+  background-color: rgb(36, 36, 36); /* Knob background color when in bright mode */
+}
+
+/* Background changes to dark mode when checked */
+#button-3 .checkbox:checked ~ .layer {
+  background-color: #eaeaea; /* Layer background turns black */
+}
+
+#button-3 .checkbox:not(:checked) ~ .layer {
+  background-color: #ffffff; /* Layer background remains white when not checked */
+}
+
+/* Body background change for dark mode */
+body.dark-mode {
+  background-color: #242424; /* Dark mode background */
+  transition: background-color 0.3s ease;
+}
+
+/* Body background change for bright mode */
+body.bright-mode {
+  background-color: #ffffff; /* Bright mode background */
+  transition: background-color 0.3s ease;
+}

@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bear Pushes Toggle</title>
+    <link rel="stylesheet" href="toggle.css">
+</head>
+<body>
+    <!-- Bear element with an arm -->
+    <div id="bear">
+        <div class="arm"></div>
+    </div>
+    
+    <!-- Toggle button -->
+    <div class="button r" id="button-3">
+        <input type="checkbox" class="checkbox" />
+        <div class="knobs"></div>
+        <div class="layer"></div>
+    </div>
+
+    <script>
+      const checkbox = document.querySelector('#button-3 .checkbox');
+      const body = document.body;
+      const button = document.querySelector('.button');
+      const bear = document.querySelector('#bear');
+
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          // Bright mode when the toggle is ON
+          body.classList.remove('dark-mode');
+          body.classList.add('bright-mode');
+          bear.classList.add('bear-active'); // Trigger bear arm extension
+
+          // Add the "bear push" animation to turn it off
+          setTimeout(function() {
+            checkbox.checked = false; // Turn it off
+            button.classList.add('poke-back'); // Add poke-back animation
+            body.classList.remove('bright-mode');
+            body.classList.add('dark-mode');
+            bear.classList.remove('bear-active'); // Retract bear arm after pushing
+          }, 1500); // Delay before bear pushes the toggle back
+        } else {
+          // Dark mode when the toggle is OFF
+          body.classList.remove('bright-mode');
+          body.classList.add('dark-mode');
+          button.classList.remove('poke-back'); // Remove poke-back class
+        }
+      });
+    </script>
+</body>
+</html>
